@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'welcome#hello'
   resources :book_shelves
   resources :genres
   resources :reviews
