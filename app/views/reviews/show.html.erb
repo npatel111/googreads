@@ -1,0 +1,7 @@
+Rating: <%=@review.rating%><br>
+Content: <%=@review.content%><br>
+Book: <%=@review.book.title%><br>
+<a href="/reviews/<%=@review.id%>/edit">Edit this rating</a>
+<%= form_tag review_path(@review), method: "delete" do%>
+  <%= submit_tag "Delete review" %>
+<% end %>

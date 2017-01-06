@@ -1,0 +1,8 @@
+Look at all the reviews we have!<br><br>
+
+<%@reviews.each do |review| %>
+  Book: <%=review.book.title%><br>
+  Rating: <%=review.rating%><br>
+  Content: <%=review.content%><br>
+  <br>
+<%end%>

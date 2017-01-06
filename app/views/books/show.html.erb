@@ -1,11 +1,17 @@
 Title: <%=@book.title%><br><br>
 Description: <%=@book.description%><br><br>
 Image: <img src="<%=@book.image%>" ><br><br>
-Author Id:<%=@book.author_id%><br>
+Author Id: <%=@book.author_id%><br>
 Author Name: <%=@book.author.name%><br><br>
 
 Genre Names: <%@book.genres.each do |genre|%>
   <%=genre.name%><br><br>
+<%end%>
+<br><br>
+Reviews: <br>
+<%@book.reviews.each do |review|%>
+  Rating: <%=review.rating%><br>
+  Content: <%=review.content%><br>
 <%end%>
 <br>
 <a href="/books/<%=@book.id%>/edit">Edit this book</a>

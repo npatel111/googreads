@@ -1,0 +1,14 @@
+Rate a book:
+<%=form_for @review do |f|%>
+  <%=f.label :rating%>
+  <%=f.number_field :rating%>
+  <%=f.label :content%>
+  <%=f.text_area :content%>
+  <br>
+  <%Book.all.each do |book|%>
+    <%=f.radio_button(:book_id, "#{book.id}") %>
+    <%=f.label :book_id, "#{book.title}" %>
+    <br>
+  <%end%>
+  <%=f.submit%>
+<%end%>
