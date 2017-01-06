@@ -5,8 +5,9 @@ Author Id:<%=@book.author_id%><br>
 Author Name: <%=@book.author.name%><br><br>
 
 Genre Names: <%@book.genres.each do |genre|%>
-  <%=genre.name%><br>
+  <%=genre.name%><br><br>
 <%end%>
+<br>
 <a href="/books/<%=@book.id%>/edit">Edit this book</a>
 
 <%= form_tag book_path(@book), method: "delete" do%>
