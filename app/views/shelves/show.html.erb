@@ -1,0 +1,10 @@
+Shelf info!<br>
+Shelf name: <%=@shelf.name%><br>
+Books in this shelf:<br>
+<%@shelf.books.each do |book| %>
+  <li><%=book.title%><br></li>
+<%end%>
+<a href="/shelves/<%=@shelf.id%>/edit">Edit this shelf</a>
+<%= form_tag shelf_path(@shelf), method: "delete" do%>
+  <%= submit_tag "Delete this shelf" %>
+<% end %>

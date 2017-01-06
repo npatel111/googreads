@@ -1,0 +1,6 @@
+List of shelves:<br>
+<%@shelves.each do |shelf| %>
+  <a href = "shelves/<%=shelf.id%>">
+    <%=shelf.name%>
+  </a><br>
+<%end%>

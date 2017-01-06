@@ -1,0 +1,10 @@
+Edit your shelf:
+<%=form_for @shelf do |f| %>
+  <%=f.label :name %>
+  <%=f.text_field :name %><br>
+  <%Book.all.each do |book|%>
+    <input type="checkbox" value="<%=book.id%>" name="shelf[book_ids][]" <%='checked' if @shelf.books.include?(book)%>><%=book.title%></input>
+    <br>
+  <%end%>
+  <%=f.submit%>
+<%end%>
