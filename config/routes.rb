@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   root 'welcome#hello'
+  resources :users
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  post '/logout' => 'sessions#destroy'
   resources :book_shelves
   resources :genres
   resources :reviews

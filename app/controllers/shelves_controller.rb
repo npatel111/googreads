@@ -4,6 +4,7 @@ class ShelvesController < ApplicationController
   end
 
   def create
+    byebug
     @shelf = Shelf.new(shelf_params)
     @shelf_books = params["shelf"]["book_ids"].map {|id| Book.find(id)}
     @shelf.books = @shelf_books
@@ -47,6 +48,6 @@ class ShelvesController < ApplicationController
   private
 
   def shelf_params
-    params.require(:shelf).permit(:name, :book_ids)
+    params.require(:shelf).permit(:name, :book_ids, :user_id)
   end
 end

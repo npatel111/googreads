@@ -13,7 +13,13 @@ Reviews: <br>
   Rating: <%=review.rating%><br>
   Content: <%=review.content%><br>
 <%end%>
+
 <br>
+Shelves containing this book:<br>
+<%@book.shelves.each do |shelf|%>
+  <%=shelf.name%><br>
+<%end%>
+
 <a href="/books/<%=@book.id%>/edit">Edit this book</a>
 
 <%= form_tag book_path(@book), method: "delete" do%>
