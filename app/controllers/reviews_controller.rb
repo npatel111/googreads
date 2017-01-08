@@ -1,4 +1,7 @@
 class ReviewsController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:index, :show]
+
   def new
     @review = Review.new
   end
@@ -6,9 +9,10 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     if @review.save
+      @shelf = Shelf.find_or_create_by(name: "Reviewed", user_id: session["user_id"])
+      @shelf.books << @review.book
       redirect_to review_path(@review)
     else
-      byebug
       render :new
     end
   end
@@ -19,6 +23,12 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
+    byebug
+    if current_user.id == @review.user_id
+      render :edit
+    else
+      redirect_to reviews_path
+    end
   end
 
   def update

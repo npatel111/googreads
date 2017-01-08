@@ -1,6 +1,10 @@
 List of shelves:<br>
 <%@shelves.each do |shelf| %>
-  <a href = "shelves/<%=shelf.id%>">
-    <%=shelf.name%>
-  </a><br>
+  <%if session["user_id"] && User.find(session["user_id"]).shelves.include?(shelf)%>
+    <a href = "/shelves/<%=shelf.id%>">
+      <%=shelf.name%>
+    </a><br>
+  <%else%>
+    <%=shelf.name%><br>
+  <%end%>
 <%end%>

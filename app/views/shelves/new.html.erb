@@ -2,10 +2,14 @@ Make a new shelf:
 <%=form_for @shelf do |f| %>
   <%=f.label :name %>
   <%=f.text_field :name %><br>
-  <%Book.all.each do |book|%>
-    <input type="checkbox" value="<%=book.id%>" name="shelf[book_ids][]"><%=book.title%></input>
-    <br>
+
+  <%User.find(session["user_id"]).shelves.each do |shelf|%>
+    <%shelf.books.each do |book|%>
+      <input type="checkbox" value="<%=book.id%>" name="shelf[book_ids][]"><%=book.title%></input>
+      <br>
+    <%end%>
   <%end%>
+
   <%= f.hidden_field :user_id, :value => session["user_id"] %>
 
   <%=f.submit%>

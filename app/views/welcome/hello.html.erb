@@ -1,5 +1,5 @@
 Welcome to googreads!
-Hi <%= @user.name %>
+Hi <%= User.find(session["user_id"]).name %>
 <%= form_tag logout_path do %>
 <%= submit_tag "Logout" %>
 <% end %>

@@ -1,4 +1,12 @@
 Hi <%=@user.name%><br>
+List of your shelves:<br>
+<%@user.shelves.each do |shelf| %>
+  Shelf name: <%=shelf.name%><br>
+  <%shelf.books.each do |book|%>
+    <%=book.title%> by <%=book.author.name%>
+  <%end%>
+  <br>
+<%end%>
 
 <%= form_tag logout_path do %>
 <%= submit_tag "Logout" %>

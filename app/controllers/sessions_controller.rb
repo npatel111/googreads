@@ -17,7 +17,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete :user_id
-    # byebug
     redirect_to login_path
   end
 

@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
-  API_KEY = "AIzaSyBSqFCs7nl1FzzygqCrKpqx-ZyGhlYHJuQ"
+  before_action :require_login
+  skip_before_action :require_login, only: [:index, :show]
 
+  API_KEY = "AIzaSyBSqFCs7nl1FzzygqCrKpqx-ZyGhlYHJuQ"
 
   def new
     @book = Book.new
@@ -19,10 +21,11 @@ class BooksController < ApplicationController
     @author_name = @api_response["items"].first["volumeInfo"]["authors"].first
     @book.author = Author.find_or_create_by(name: @author_name)
     @genre_names = @api_response["items"].first["volumeInfo"]["categories"] || ["unstated"]
-    # @book.genres = ["unstated"] if @genre_names == "unstated"
     @genres_all = @genre_names.map { |genre| Genre.find_or_create_by(name: genre)}
     @book.genres = @genres_all
     if @book.save
+      @shelf = Shelf.find_or_create_by(name: "Searched", user_id: session["user_id"])
+      @shelf.books << @book
       redirect_to book_path(@book)
     else
       render :new
@@ -35,6 +38,11 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if current_user.shelves.select {|shelf| shelf.name=="Searched"}.include?(@book)
+      render :edit
+    else
+      redirect_to books_path
+    end
   end
 
   def update

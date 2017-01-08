@@ -1,29 +1,37 @@
 class ShelvesController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:index]
   def new
     @shelf = Shelf.new
   end
 
   def create
-    byebug
     @shelf = Shelf.new(shelf_params)
     @shelf_books = params["shelf"]["book_ids"].map {|id| Book.find(id)}
     @shelf.books = @shelf_books
     if @shelf.save
-      byebug
       redirect_to shelf_path(@shelf)
     else
-      byebug
       render :new
-
     end
   end
 
   def show
     @shelf = Shelf.find(params[:id])
+    if current_user.shelves.include?(@shelf)
+      render :show
+    else
+      redirect_to shelves_path
+    end
   end
 
   def edit
     @shelf = Shelf.find(params[:id])
+    if current_user.shelves.include?(@shelf)
+      render :edit
+    else
+      redirect_to shelves_path
+    end
   end
 
   def update
