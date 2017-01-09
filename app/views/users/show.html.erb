@@ -11,3 +11,7 @@ List of your shelves:<br>
 <%= form_tag logout_path do %>
 <%= submit_tag "Logout" %>
 <% end %>
+
+<%= form_tag user_path(@user), method: "delete" do%>
+  <%= submit_tag "Delete account" %>
+<% end %>

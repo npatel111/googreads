@@ -23,7 +23,6 @@ class ReviewsController < ApplicationController
 
   def edit
     @review = Review.find(params[:id])
-    byebug
     if current_user.id == @review.user_id
       render :edit
     else
@@ -39,6 +38,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review = Review.find(params[:id])
+    @review.user_id == current_user.id
     @review.destroy
     redirect_to reviews_path
   end
@@ -50,6 +50,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:rating, :content, :book_id)
+    params.require(:review).permit(:rating, :content, :book_id, :user_id)
   end
 end

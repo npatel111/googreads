@@ -1,14 +1,17 @@
-Edit Review:
+Edit a book:
 <%=form_for @review do |f|%>
   <%=f.label :rating%>
   <%=f.number_field :rating%>
   <%=f.label :content%>
   <%=f.text_area :content%>
   <br>
-  <%Book.all.each do |book|%>
-    <%=f.radio_button(:book_id, "#{book.id}") %>
-    <%=f.label :book_id, "#{book.title}" %>
-    <br>
-  <%end%>
+    <%User.find(session["user_id"]).shelves.each do |shelf|%>
+      <%shelf.books.each do |book|%>
+        <%=f.radio_button(:book_id, "#{book.id}") %>
+        <%=f.label :book_id, "#{book.title}" %>
+        <br>
+      <%end%>
+    <%end%>
+  <%= f.hidden_field :user_id, :value => session["user_id"] %>
   <%=f.submit%>
 <%end%>

@@ -5,10 +5,17 @@ Rate a book:
   <%=f.label :content%>
   <%=f.text_area :content%>
   <br>
-  <%Book.all.each do |book|%>
-    <%=f.radio_button(:book_id, "#{book.id}") %>
-    <%=f.label :book_id, "#{book.title}" %>
-    <br>
+  <%if User.find(session["user_id"]).shelves.length > 0%>
+    <%User.find(session["user_id"]).shelves.each do |shelf|%>
+      <%shelf.books.each do |book|%>
+        <%=f.radio_button(:book_id, "#{book.id}") %>
+        <%=f.label :book_id, "#{book.title}" %>
+        <br>
+      <%end%>
+    <%end%>
+  <%else%>
+      You haven't search for any books yet!
   <%end%>
+  <%= f.hidden_field :user_id, :value => session["user_id"] %>
   <%=f.submit%>
 <%end%>
