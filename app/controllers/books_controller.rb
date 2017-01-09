@@ -11,7 +11,7 @@ class BooksController < ApplicationController
     @search_term = params["book"]["title"]
     @book = BookAdapter.get_first_book(@search_term)
     if @book.save
-      @shelf = Shelf.find_or_create_by(name: "Searched", user_id: session["user_id"])
+      @shelf = Shelf.find_or_create_by(name: "Searched", user_id: current_user.id)
       @shelf.books << @book
       redirect_to book_path(@book)
     else

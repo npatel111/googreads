@@ -1,44 +1,47 @@
 class AuthorsController < ApplicationController
-  # wait I think we want to only have index and show methods here because doesn't make sense to add an author or edit one, google books has all authors, and up to date info?. If I do add all CRUD actions, would just need to add user_id to table for authors for belongs to relationship
-  #so no need to have before action require login
+  # just want index and show methods, so commented out everything else
 
-  def new
-    @author = Author.new
-  end
 
-  def create
-    @author = Author.new(author_params)
-    if @author.save
-      redirect_to author_path(@author)
-    else
-      render :new
-    end
+  def index
+    @authors = Author.all
   end
 
   def show
     @author = Author.find(params[:id])
   end
 
-  def edit
-    @author = Author.find(params[:id])
-    if current_user.id
-  end
 
-  def update
-    @author = Author.find(params[:id])
-    @author.update(author_params)
-    redirect_to author_path(@author)
-  end
+  # def new
+  #   @author = Author.new
+  # end
+  #
+  # def create
+  #   @author = Author.new(author_params)
+  #   if @author.save
+  #     redirect_to author_path(@author)
+  #   else
+  #     render :new
+  #   end
+  # end
 
-  def index
-    @authors = Author.all
-  end
 
-  def destroy
-    @author = Author.find(params[:id])
-    @author.destroy
-    redirect_to authors_path
-  end
+
+  # def edit
+  #   @author = Author.find(params[:id])
+  #   if current_user.id
+  # end
+  #
+  # def update
+  #   @author = Author.find(params[:id])
+  #   @author.update(author_params)
+  #   redirect_to author_path(@author)
+  # end
+
+  # def destroy
+  #   @author = Author.find(params[:id])
+  #   @author.destroy
+  #   redirect_to authors_path
+  # end
 
   private
 

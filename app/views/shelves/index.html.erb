@@ -1,10 +1,19 @@
 List of shelves:<br>
+<br>
+Your shelves:<br>
 <%@shelves.each do |shelf| %>
+
   <%if session["user_id"] && User.find(session["user_id"]).shelves.include?(shelf)%>
     <a href = "/shelves/<%=shelf.id%>">
       <%=shelf.name%>
     </a><br>
-  <%else%>
+  <%end%>
+<%end%>
+<br>
+
+Other shelves:<br>
+<%@shelves.each do |shelf| %>
+  <%if !User.find(session["user_id"]).shelves.include?(shelf) && shelf.name !="Searched" && shelf.name != "Reviewed"%>
     <%=shelf.name%><br>
   <%end%>
 <%end%>
