@@ -1,7 +1,6 @@
 class AuthorsController < ApplicationController
   # just want index and show methods, so commented out everything else
 
-
   def index
     @authors = Author.all
   end

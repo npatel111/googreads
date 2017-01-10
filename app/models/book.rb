@@ -5,6 +5,7 @@ class Book < ApplicationRecord
   has_many :book_genres
   has_many :genres, through: :book_genres
   belongs_to :author
+  validates :title, presence: true
 
 
 end
