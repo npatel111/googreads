@@ -20,7 +20,7 @@ Shelves containing this book:<br>
     <a href="/shelves/<%=shelf.id%>">
       <%=shelf.name%><br>
     </a>
-  <%else%>
+  <%elsif shelf.name != "Searched" && shelf.name != "Reviewed"%>
     <%=shelf.name%><br>
   <%end%>
 <%end%>

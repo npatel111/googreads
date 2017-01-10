@@ -1,9 +1,19 @@
-Hi <%=@user.name%><br>
-List of your shelves:<br>
+Hi <%=@user.name%><br><br>
+List of your shelves:<br><br>
 <%@user.shelves.each do |shelf| %>
-  Shelf name: <%=shelf.name%><br>
+  <strong>Shelf name: <%=shelf.name%></strong><br>
   <%shelf.books.each do |book|%>
-    <%=book.title%> by <%=book.author.name%>
+    <%=book.title%> by <%=book.author.name%><Br>
+    <%book.genres.each do |genre|%>
+       Genre:<%=genre.name%><br>
+    <%end%>
+    <%if book.reviews.length > 0%>
+      Reviews:<br>
+      <%book.reviews.each do |review| %>
+        Rating: <%=review.rating%><br>
+        Content: <%=review.content%><br>
+      <%end%><br>
+    <%end%><br>
   <%end%>
   <br>
 <%end%>

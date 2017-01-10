@@ -1,5 +1,8 @@
 Welcome to googreads!
-Hi <%= User.find(session["user_id"]).name %>
+Hi <%= @current_user.name %>
+<br>
+<a href="/users/<%=@current_user.id%>">Go to my page</a>
+
 <%= form_tag logout_path do %>
 <%= submit_tag "Logout" %>
 <% end %>
