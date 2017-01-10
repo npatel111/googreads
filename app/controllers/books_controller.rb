@@ -11,6 +11,7 @@ class BooksController < ApplicationController
     @search_term = params["book"]["title"]
     @book = BookAdapter.get_first_book(@search_term)
     if @book = Book.find_or_create_by(title: @book.title, description: @book.description, image: @book.image, author_id: @book.author_id)
+      BookAdapter.add_genres(@book)
       @shelf = Shelf.find_or_create_by(name: "Searched", user_id: current_user.id)
       @shelf.books << @book if !@shelf.books.include?(@book)
       redirect_to book_path(@book)

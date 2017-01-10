@@ -1,16 +1,18 @@
 Rate a book:
 <%=form_for @review do |f|%>
   <%=f.label :rating%>
-  <%=f.number_field :rating%>
+  <%=f.number_field :rating, required: true%>
   <%=f.label :content%>
-  <%=f.text_area :content%>
+  <%=f.text_area :content, required: true%>
   <br>
   <%if User.find(session["user_id"]).shelves.length > 0%>
     <%User.find(session["user_id"]).shelves.each do |shelf|%>
-      <%shelf.books.each do |book|%>
-        <%=f.radio_button(:book_id, "#{book.id}") %>
-        <%=f.label :book_id, "#{book.title}" %>
-        <br>
+      <%if shelf.name = "Searched"%>
+        <%shelf.books.each do |book|%>
+          <%=f.radio_button(:book_id, "#{book.id}") %>
+          <%=f.label :book_id, "#{book.title}" %>
+          <br>
+        <%end%>
       <%end%>
     <%end%>
   <%else%>

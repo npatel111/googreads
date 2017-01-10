@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  attr_accessor :user
   def new
 
   end

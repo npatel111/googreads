@@ -1,5 +1,9 @@
-<%@books.each do |book| %>
-  <a href="/books/<%=book.id%>">
-  <%=book.title%> by <%=book.author.name%><br>
-  </a>
+<%if @books.length > 0%>
+  <%@books.each do |book| %>
+    <a href="/books/<%=book.id%>">
+    <%=book.title%> by <%=book.author.name%><br>
+    </a>
+  <%end%>
+<%else%>
+  You have no books!
 <%end%>

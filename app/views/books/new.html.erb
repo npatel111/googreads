@@ -2,6 +2,6 @@
 Search a new book:
 <%=form_for @book do |f|%>
 <%=f.label "Search" %>
-<%=f.text_field :title%>
+<%=f.text_field :title, required: true%>
 <%=f.submit %>
 <%end%>

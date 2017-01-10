@@ -5,4 +5,5 @@ class Review < ApplicationRecord
   validates :rating, :inclusion => {:in => (1..5)}
   validates :rating, presence: true
   validates :content, presence: true
+  validates :book_id, presence: true
 end

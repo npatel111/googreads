@@ -3,9 +3,7 @@ Description: <%=@book.description%><br><br>
 Image: <img src="<%=@book.image%>" ><br><br>
 Author Name: <%=@book.author.name%><br><br>
 
-Genre Names: <%@book.genres.each do |genre|%>
-  <%=genre.name%><br><br>
-<%end%>
+Genres: <%=@book.list_genres(@book)%>
 <br><br>
 Reviews: <br>
 <%@book.reviews.each do |review|%>
@@ -13,14 +11,14 @@ Reviews: <br>
   Content: <%=review.content%><br>
 <%end%>
 
+<!-- Please work: <br><%=@book.list_reviews(@book)%> -->
+
 <br>
 Shelves containing this book:<br>
 <%@book.shelves.each do |shelf|%>
   <%if shelf.user.id == session["user_id"]%>
-    <a href="/shelves/<%=shelf.id%>">
-      <%=shelf.name%><br>
-    </a>
-  <%elsif shelf.name != "Searched" && shelf.name != "Reviewed"%>
+    <a href="/shelves/<%=shelf.id%>"><%=shelf.name%><br></a>
+  <%elsif shelf.name != ("Searched" || "Reviewed") %>
     <%=shelf.name%><br>
   <%end%>
 <%end%>
