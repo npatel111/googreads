@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(name: params["user"]["name"], password: params["user"]["password"])
-    if @user.authenticate(params["user"]["password"]) && params["user"]["password"] == params["user"]["password_confirmation"] && @user.save
+    # byebug
+    @user = User.new(user_params)
+    if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash.now[:alert] = "need a new name"
+      flash.now[:alert] = "there was an error"
       render :new
     end
   end
