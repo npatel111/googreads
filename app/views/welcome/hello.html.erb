@@ -1,8 +1,10 @@
 Welcome to googreads!
-Hi <%= @current_user.name %>
+Hi <%= @current_user ? @current_user.name : 'stranger' %>
 <br>
-<a href="/users/<%=@current_user.id%>">Go to my page</a>
+<% if @current_user %>
+  <a href="/users/<%=@current_user.id%>">Go to my page</a>
 
-<%= form_tag logout_path do %>
-<%= submit_tag "Logout" %>
+  <%= form_tag logout_path do %>
+  <%= submit_tag "Logout" %>:
+  <% end %>
 <% end %>
