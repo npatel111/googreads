@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # debugger
     @user = User.find_by(name: params[:name])
     if @user.authenticate(params[:password])
       # @user.save
@@ -17,7 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete :user_id
-    redirect_to login_path
+    redirect_to root_path
   end
 
 end

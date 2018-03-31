@@ -22,6 +22,8 @@ List of your shelves:<br><br>
 <%= submit_tag "Logout" %>
 <% end %>
 
+<%= link_to "Edit Account", edit_user_path %>
+
 <%= form_tag user_path(@user), method: "delete" do%>
   <%= submit_tag "Delete account" %>
 <% end %>

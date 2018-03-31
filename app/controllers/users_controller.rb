@@ -27,6 +27,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user)
+    else
+      redirect_to root_path
+    end
+  end
+
   def show
     @user = User.find(params[:id])
     if session["user_id"] && @user == current_user
