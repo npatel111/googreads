@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :book_shelves
   resources :genres, only: [:index, :show]
   resources :reviews
-  resources :books
+  resources :books, only: [:new, :create, :index, :show]
   resources :authors, only: [:index, :show]
   resources :shelves
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
