@@ -2,7 +2,7 @@ class GenresController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:index, :show]
 
-  # wait I think we want to only have index and show methods here because doesn't make sense to add a genre, you'd just add a shelf.
+  # I think we want to only have index and show methods here because doesn't make sense to add a genre, you'd just add a shelf.
 
   def show
     @genre = Genre.find(params[:id])

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   post '/logout' => 'sessions#destroy'
   resources :book_shelves
-  resources :genres
+  resources :genres, only: [:index, :show]
   resources :reviews
   resources :books
   resources :authors

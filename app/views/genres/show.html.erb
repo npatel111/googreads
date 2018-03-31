@@ -4,7 +4,3 @@ Books in this genre:<br>
   <%=book.title%> by <%=book.author.name%><br>
 <%end%>
 <br>
-<a href="/genres/<%=@genre.id%>/edit">Edit this genre</a>
-<%= form_tag genre_path(@genre), method: "delete" do%>
-  <%= submit_tag "Delete #{@genre.name}" %>
-<% end %>
