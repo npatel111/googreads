@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    byebug
+    # byebug
     current_user.id != nil
   end
 
