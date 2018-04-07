@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  attr_accessor :user
+  # attr_accessor :user
   def new
     @user = User.new
   end

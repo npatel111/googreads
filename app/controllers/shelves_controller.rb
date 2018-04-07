@@ -1,7 +1,7 @@
 class ShelvesController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:index]
-  attr_accessor :shelves, :shelf
+  # attr_accessor :shelves, :shelf
   def new
     @shelf = Shelf.new
   end
