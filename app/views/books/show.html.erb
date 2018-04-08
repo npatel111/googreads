@@ -23,5 +23,17 @@ Shelves containing this book:<br>
   <%end%>
 <%end%>
 <br>
-<%= link_to "Add To A Shelf", new_shelf_path %><br>
+
+<% if @current_user %>
+  <%= link_to "Make A New Shelf", new_shelf_path %> or
+  <br>
+  Add to An Existing Shelf:<br>
+  <% @current_user.shelves.each do |shelf|%>
+    <a href="/shelves/<%=shelf.id%>/edit">
+      <%=shelf.name%>
+    </a>
+    <br>
+  <% end %>
+<% end %>
+<br>
 <%= link_to "Home", root_path %>

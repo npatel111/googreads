@@ -5,7 +5,8 @@ Edit your shelf:
   <%User.find(session["user_id"]).shelves.each do |shelf|%>
     <%shelf.books.each do |book|%>
       <input type="checkbox" value="<%=book.id%>" name="shelf[book_ids][]" <%='checked' if @shelf.books.include?(book)%>><%=book.title%></input>
-    <br>
+      <br>
+    <%end%>
   <%end%>
   <%=f.submit%>
 <%end%>
