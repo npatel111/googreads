@@ -1,20 +1,30 @@
 List of shelves:<br>
 <br>
-Your shelves:<br>
-<%@shelves.each do |shelf| %>
-
-  <%if session["user_id"] && User.find(session["user_id"]).shelves.include?(shelf)%>
-    <a href = "/shelves/<%=shelf.id%>">
-      <%=shelf.name%>
-    </a><br>
+<%if @current_user%>
+  Your shelves:<br>
+  <%@shelves.each do |shelf| %>
+    <%if @current_user.shelves.include?(shelf)%>
+      <a href = "/shelves/<%=shelf.id%>">
+        <%=shelf.name%>
+      </a><br>
+    <%end%>
   <%end%>
-<%end%>
-<br>
 
-Other shelves:<br>
-<%@shelves.each do |shelf| %>
-  <%if !User.find(session["user_id"]).shelves.include?(shelf) && shelf.name !="Searched" && shelf.name != "Reviewed"%>
-    <%=shelf.name%><br>
+  Other shelves:
+  <%@shelves.each do |shelf| %>
+    <%if !@current_user.shelves.include?(shelf)%>
+      <a href = "/shelves/<%=shelf.id%>">
+        <%=shelf.name%>
+      </a><br>
+    <%end%>
+  <%end%><br>
+<% else %>
+  <%@shelves.each do |shelf| %>
+    <%if shelf.name != 'Reviewed' && shelf.name != 'Searched' %>
+      <a href = "/shelves/<%=shelf.id%>">
+        <%=shelf.name%>
+      </a><br>
+    <%end%>
   <%end%>
 <%end%>
 <br>

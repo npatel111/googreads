@@ -45,6 +45,7 @@ class ShelvesController < ApplicationController
   end
 
   def index
+    @current_user = current_user
     @shelves = Shelf.all
   end
 
