@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :require_login
   skip_before_action :require_login, only: [:index, :show]
-  attr_accessor :book
+  # attr_accessor :book
 
   def new
     @book = Book.new
