@@ -39,9 +39,13 @@ RSpec.describe BooksController, type: :controller do
       expect(create(:book)).to be_valid
     end
 
-    it "redirects to the created book" do
-      expect(response).to redirect_to(book_path(:book))
+    it 'belongs to an author' do
+      author = create(:author)
+      book = create(:book)
+
+      expect(Author.last.books).to include(book)
     end
+
   end
 
   # context "creating an invalid book" do
