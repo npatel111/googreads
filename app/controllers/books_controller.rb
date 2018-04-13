@@ -14,6 +14,7 @@ class BooksController < ApplicationController
       BookAdapter.add_genres(@book)
       @shelf = Shelf.find_or_create_by(name: "Searched", user_id: current_user.id)
       @shelf.books << @book if !@shelf.books.include?(@book)
+      # byebug
       redirect_to book_path(@book)
     else
       render :new
