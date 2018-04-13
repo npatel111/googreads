@@ -7,7 +7,7 @@ RSpec.describe BooksController, type: :controller do
 
     it "lists all books" do
       author = create(:author)
-      book = create(:book)
+      book = create(:valid_book)
 
       get :index
       expect(assigns(:books)).to eq([book])
@@ -15,7 +15,7 @@ RSpec.describe BooksController, type: :controller do
 
     it "views a single book" do
       author = create(:author)
-      book = create(:book)
+      book = create(:valid_book)
 
       get :show, params: { id: book.id }
       expect(assigns(:book)).to eq(book)
@@ -27,37 +27,40 @@ RSpec.describe BooksController, type: :controller do
 
     it "creates a new book" do
       author = create(:author)
-      book = create(:book)
+      book = create(:valid_book)
 
       expect(Book.count).to eq(1)
     end
 
     it "creates a valid book" do
       author = create(:author)
-      book = create(:book)
+      book = create(:valid_book)
 
-      expect(create(:book)).to be_valid
+      expect(create(:valid_book)).to be_valid
     end
 
     it 'belongs to an author' do
       author = create(:author)
-      book = create(:book)
+      book = create(:valid_book)
 
       expect(Author.last.books).to include(book)
     end
 
   end
 
-  # context "creating an invalid book" do
-  #   before { post(:create, params: { book: invalid_attributes}) }
-  #
-  #   it "has not been persisted" do
-  #     expect(assigns(:book)).to be_new_record
-  #   end
-  #
-  #   it "re-renders the template" do
-  #     expect(response).to render_template("new")
-  #   end
-  # end
+  context "creating an invalid book" do
+
+    it "has not been persisted" do
+      book = build(:invalid_book)
+
+      expect(book).to_not be_valid
+    end
+
+    # it "re-renders the template" do
+    #   book = build(:invalid_book)
+    #
+    #   expect(response).to render_template :new
+    # end
+  end
 
 end
