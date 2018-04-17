@@ -20,4 +20,15 @@ FactoryBot.define do
     association :author
   end
 
+  factory :user do
+    name "Elizabeth Bennett"
+  end
+
+  factory :review do
+    rating 5
+    content "Amazing Book!!"
+    association :valid_book
+    association :user
+  end
+
 end
