@@ -24,14 +24,14 @@ RSpec.describe ReviewsController, type: :controller do
     it "views a single review" do
       review = create(:review)
 
-      get :show, { id: review.id }
+      get :show, params: { id: review.id }
       expect(assigns(:review)).to eq(review)
     end
 
     it "fetches a review for editing" do
       review = create(:review)
 
-      get :edit, { id: review.id }
+      get :edit, params: { id: review.id }
       expect(assigns(:review)).to eq(review)
     end
   end
