@@ -1,3 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-warning">
+  <div class="container">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+        <span class="nav-item active">
+          <a href="/" class="nav-link">Home</a>
+        </span>
+        <span class="nav-item">
+          <a href="/authors" class="nav-link">View All Authors</a>
+        </span>
+        <span class="nav-item">
+          <a href="/books" class="nav-link">View All Books</a>
+        </span>
+        <span class="nav-item">
+          <a href="/genres" class="nav-link">View All Genres</a>
+        </span>
+        <span class="nav-item">
+          <a href="/reviews" class="nav-link">View All Reviews</a>
+        </span>
+        <span class="nav-item">
+          <a href="/shelves" class="nav-link">View All Shelves</a>
+        </span>
+      </ul>
+    </div>
+  </div>
+</nav>
+
 Welcome to googreads!
 Hi <%= @current_user ? @current_user.name : 'stranger' %>
 <br>
@@ -17,8 +44,3 @@ Hi <%= @current_user ? @current_user.name : 'stranger' %>
 <%= link_to "Find Your Next Book!", new_book_path %>
 <br>
 <br>
-<%= link_to "View All Authors", authors_path %>
-<%= link_to "View All Books", books_path %>
-<%= link_to "View All Genres", genres_path %>
-<%= link_to "View All Reviews", reviews_path %>
-<%= link_to "View All Shelves", shelves_path %>
