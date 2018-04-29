@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :require_login
-  skip_before_action :require_login, only: [:index, :show]
+  skip_before_action :require_login, only: [:index, :show, :new, :create]
   # attr_accessor :book
 
   def new
@@ -12,8 +12,10 @@ class BooksController < ApplicationController
     @book = BookAdapter.get_first_book(@search_term)
     if @book = Book.find_or_create_by(title: @book.title, description: @book.description, image: @book.image, author_id: @book.author_id)
       BookAdapter.add_genres(@book)
-      @shelf = Shelf.find_or_create_by(name: "Searched", user_id: current_user.id)
-      @shelf.books << @book if !@shelf.books.include?(@book)
+      if current_user
+        @shelf = Shelf.find_or_create_by(name: "Searched", user_id: current_user.id)
+        @shelf.books << @book if !@shelf.books.include?(@book)
+      end
       # byebug
       redirect_to book_path(@book)
     else
