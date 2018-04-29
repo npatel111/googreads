@@ -1,7 +1,8 @@
 <%@genres.each do |genre|%>
-  <a href="/genres/<%=genre.id%>">
+  <a href="/genres/<%=genre.id%>" class="badge badge-primary">
     <%=genre.name%><br>
   </a>
+  <br>
 <%end%>
 <br>
 <%= link_to "Home", root_path %>

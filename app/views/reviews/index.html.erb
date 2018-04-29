@@ -1,12 +1,14 @@
 Look at all the reviews we have!<br><br>
 
 <%@reviews.each do |review| %>
-  <a href="/reviews/<%=review.id%>">
+  <a href="/reviews/<%=review.id%>" class="badge badge-primary">
     Book: <%=review.book.title%><br>
     Rating: <%=review.rating%><br>
     Content: <%=review.content%><br>
     <br>
   </a>
+  <br>
+  <br>
 <%end%>
 <br>
 <%= link_to "Home", root_path %>

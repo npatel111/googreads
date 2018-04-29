@@ -4,26 +4,29 @@ List of shelves:<br>
   Your shelves:<br>
   <%@shelves.each do |shelf| %>
     <%if @current_user.shelves.include?(shelf)%>
-      <a href = "/shelves/<%=shelf.id%>">
+      <a href = "/shelves/<%=shelf.id%>" class="badge badge-primary">
         <%=shelf.name%>
-      </a><br>
+      </a>
+      <br>
     <%end%>
   <%end%>
 
   Other shelves:
   <%@shelves.each do |shelf| %>
     <%if !@current_user.shelves.include?(shelf)%>
-      <a href = "/shelves/<%=shelf.id%>">
+      <a href = "/shelves/<%=shelf.id%>" class="badge badge-primary">
         <%=shelf.name%>
-      </a><br>
+      </a>
+      <br>
     <%end%>
   <%end%><br>
 <% else %>
   <%@shelves.each do |shelf| %>
     <%if shelf.name != 'Reviewed' && shelf.name != 'Searched' %>
-      <a href = "/shelves/<%=shelf.id%>">
+      <a href = "/shelves/<%=shelf.id%>" class="badge badge-primary">
         <%=shelf.name%>
-      </a><br>
+      </a>
+      <br>
     <%end%>
   <%end%>
 <%end%>
