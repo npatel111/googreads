@@ -1,6 +1,10 @@
-Comprehensive list:
+Other authors users have searched for:
+<br>
 <%@authors.each do |author|%>
-  <%=author.name%>
+  <a href="/authors/<%=author.id%>" class="badge badge-primary">
+    <%=author.name%>
+  </a>
+  <br>
 <%end%>
 <br>
 <%= link_to "Home", root_path %>
