@@ -1,8 +1,14 @@
-
-Author name: <%=@author.name%>
-
-<%= form_tag author_path(@author), method: "delete" do%>
-  <%= submit_tag "Delete #{@author.name}" %>
-<% end %>
 <br>
-<%= link_to "Home", root_path %>
+<div class="card card-nav-tabs text-center">
+  <div class="card-header card-header-success">
+    <%= @author.name %>
+  </div>
+  <div class="card-body">
+    <%@author.books.each do |book| %>
+      <a href="/books/<%=book.id%>" >
+      <%=book.title%>
+      </a>
+      <br>
+    <%end%>
+  </div>
+</div>
