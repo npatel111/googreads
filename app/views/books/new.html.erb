@@ -1,9 +1,10 @@
-
+<div class="form-container">
 Search a new book:
+<br>
+<br>
 <%=form_for @book do |f|%>
-<%=f.label "Search" %>
 <%=f.text_field :title, required: true%>
-<%=f.submit %>
+<%=f.submit "Search"%>
 <%end%>
 <br>
-<%= link_to "Home", root_path %>
+</div>
