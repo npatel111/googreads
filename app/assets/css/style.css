@@ -12,3 +12,7 @@
 .navbar {
   margin-bottom: 5rem;
 }
+
+.card-text {
+  text-align: left;
+}
