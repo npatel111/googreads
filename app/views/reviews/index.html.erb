@@ -1,14 +1,17 @@
-Look at all the reviews we have!<br><br>
-
-<%@reviews.each do |review| %>
-  <a href="/reviews/<%=review.id%>" class="badge badge-primary">
-    Book: <%=review.book.title%><br>
-    Rating: <%=review.rating%><br>
-    Content: <%=review.content%><br>
-    <br>
-  </a>
-  <br>
-  <br>
-<%end%>
-<br>
-<%= link_to "Home", root_path %>
+<div class="container">
+  <div class="row" id="features">
+    <%@reviews.each do |review| %>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <div class="card" style="width: 17rem;">
+          <div class="card-body">
+            <h4 class="card-title"><%=review.book.title%></h4>
+            <h6 class="card-subtitle mb-2 text-muted">Rating: <%=review.rating%></h6>
+            <p class="card-text"><%=review.content%></p>
+            <a href="/reviews/<%=review.id%>" class="card-link">View review</a>
+          </div>
+        </div>
+      </div>
+      <br>
+    <%end%>
+  </div>
+</div>
