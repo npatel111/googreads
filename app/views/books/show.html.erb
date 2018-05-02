@@ -1,41 +1,40 @@
-  <center>
-    <div class="card" style="width: 40rem;">
-      <div class="card-body">
-        <img src="<%=@book.image%>" ><br><br>
-        <h4 class="card-title"><%=@book.title%></h4>
-        <h6 class="card-subtitle mb-2 text-muted">By <%=@book.author.name%></h6>
-        <p class="card-text"><%=@book.description%></p>
-        <p class="card-text">Genres: <%=@book.list_genres(@book)%></p>
-        <p class="card-text">
-          Reviews: <br>
-          <%@book.reviews.each do |review|%>
-            Rating: <%=review.rating%><br>
-            Content: <%=review.content%><br>
+<center>
+  <div class="card" style="width: 40rem;">
+    <div class="card-body">
+      <img src="<%=@book.image%>" ><br><br>
+      <h4 class="card-title"><%=@book.title%></h4>
+      <h6 class="card-subtitle mb-2 text-muted">By <%=@book.author.name%></h6>
+      <p class="card-text"><%=@book.description%></p>
+      <p class="card-text">Genres: <%=@book.list_genres(@book)%></p>
+      <p class="card-text">
+        Reviews: <br>
+        <%@book.reviews.each do |review|%>
+          Rating: <%=review.rating%><br>
+          Content: <%=review.content%><br>
+        <%end%>
+      </p>
+      <p class="card-text">
+        Shelves containing this book:<br>
+        <%@book.shelves.each do |shelf|%>
+          <%if shelf.user.id == session["user_id"]%>
+            <a href="/shelves/<%=shelf.id%>"><%=shelf.name%><br></a>
+          <%elsif shelf.name != ("Searched" || "Reviewed") %>
+            <%=shelf.name%><br>
           <%end%>
-        </p>
-        <p class="card-text">
-          Shelves containing this book:<br>
-          <%@book.shelves.each do |shelf|%>
-            <%if shelf.user.id == session["user_id"]%>
-              <a href="/shelves/<%=shelf.id%>"><%=shelf.name%><br></a>
-            <%elsif shelf.name != ("Searched" || "Reviewed") %>
-              <%=shelf.name%><br>
-            <%end%>
-          <%end%>
-        </p>
-      </div>
-    </center>
-
-    <% if @current_user %>
-      <%= link_to "Make A New Shelf", new_shelf_path %> or
-      <br>
-      Add to An Existing Shelf:<br>
-      <% @current_user.shelves.each do |shelf|%>
-        <a href="/shelves/<%=shelf.id%>/edit">
-          <%=shelf.name%>
-        </a>
+        <%end%>
+      </p>
+      <% if @current_user %>
+        <%= link_to "Make A New Shelf", new_shelf_path %> or
         <br>
+        Add to An Existing Shelf:<br>
+        <% @current_user.shelves.each do |shelf|%>
+          <a href="/shelves/<%=shelf.id%>/edit">
+            <%=shelf.name%>
+          </a>
+          <br>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
     <br>
   </div>
+</center>
