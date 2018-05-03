@@ -38,6 +38,8 @@ group :development, :test do
   gem 'capybara'
   gem "factory_bot_rails"
   gem 'rails-controller-testing'
+  gem 'sqlite3'
+
 end
 
 group :development do
@@ -54,6 +56,9 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :production do
+  gem 'pg'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
