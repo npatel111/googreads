@@ -9,9 +9,12 @@
   <% if @current_user %>
     <a href="/users/<%=@current_user.id%>">Go to my page</a>
 
+
     <%= form_tag logout_path do %>
-    <%= submit_tag "Logout" %>
+      <button class="btn btn-danger" type="submit" name="commit" value="Logout" data-disable-with="Logout" >Logout</button>
     <% end %>
+
+
   <% else %>
     <br>
     <button type="button" class="btn btn-danger"><%= link_to "Sign Up", new_user_path %></button>
